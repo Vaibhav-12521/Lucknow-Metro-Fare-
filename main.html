@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lucknow Metro Fare Calculator</title>
+</head>
+<body>
+  <h1>Lucknow Metro Fare Calculator</h1>
+  <form id="fareCalculator">
+    <label for="start">Starting Station:</label>
+    <select id="start" name="start">
+      <option value="CCS Airport">CCS Airport</option>
+      <option value="Amausi">Amausi</option>
+      <option value="Transport Nagar">Transport Nagar</option>
+      <option value="Krishna Nagar">Krishna Nagar</option>
+      <option value="Singar Nagar">Singar Nagar</option>
+      <option value="Alambagh">Alambagh</option>
+      <option value="Alambagh Bus Stand">Alambagh Bus Stand</option>
+      <option value="Mawaiya">Mawaiya</option>
+      <option value="Durgapuri">Durgapuri</option>
+      <option value="Charbagh Railway Station">Charbagh Railway Station</option>
+      <option value="Hussainganj">Hussainganj</option>
+      <option value="Sachivalaya">Sachivalaya</option>
+      <option value="Hazratganj">Hazratganj</option>
+      <option value="KD Singh Babu Stadium">KD Singh Babu Stadium</option>
+      <option value="Lucknow University">Lucknow University</option>
+      <option value="IT College">IT College</option>
+      <option value="Badshah Nagar">Badshah Nagar</option>
+      <option value="Lekhraj Market">Lekhraj Market</option>
+      <option value="Bhootnath Market">Bhootnath Market</option>
+      <option value="Indira Nagar">Indira Nagar</option>
+      <option value="Munshipulia">Munshipulia</option>
+    </select>
+
+    <label for="destination">Destination Station:</label>
+    <select id="destination" name="destination">
+      <option value="CCS Airport">CCS Airport</option>
+      <option value="Amausi">Amausi</option>
+      <option value="Transport Nagar">Transport Nagar</option>
+      <option value="Krishna Nagar">Krishna Nagar</option>
+      <option value="Singar Nagar">Singar Nagar</option>
+      <option value="Alambagh">Alambagh</option>
+      <option value="Alambagh Bus Stand">Alambagh Bus Stand</option>
+      <option value="Mawaiya">Mawaiya</option>
+      <option value="Durgapuri">Durgapuri</option>
+      <option value="Charbagh Railway Station">Charbagh Railway Station</option>
+      <option value="Hussainganj">Hussainganj</option>
+      <option value="Sachivalaya">Sachivalaya</option>
+      <option value="Hazratganj">Hazratganj</option>
+      <option value="KD Singh Babu Stadium">KD Singh Babu Stadium</option>
+      <option value="Lucknow University">Lucknow University</option>
+      <option value="IT College">IT College</option>
+      <option value="Badshah Nagar">Badshah Nagar</option>
+      <option value="Lekhraj Market">Lekhraj Market</option>
+      <option value="Bhootnath Market">Bhootnath Market</option>
+      <option value="Indira Nagar">Indira Nagar</option>
+      <option value="Munshipulia">Munshipulia</option>
+    </select>
+
+    <button type="button" onclick="calculateFare()">Calculate Fare</button>
+  </form>
+
+  <div class="result" id="fareResult"></div>
+
+  <script>
+    function calculateFare() {
+      var start = document.getElementById('start').value;
+      var destination = document.getElementById('destination').value;
+
+      var stations = calculateStations(start, destination);
+      var fare = calculateFarePrice(stations);
+
+      document.getElementById('fareResult').textContent = "Fare Price: Rs " + fare;
+    }
+
+    function calculateStations(start, destination) {
+      var stations = 0;
+      var stationList = ["CCS Airport", "Amausi", "Transport Nagar", "Krishna Nagar", "Singar Nagar","Alambagh", "Alambagh Bus Stand", "Mawaiya", "Durgapuri", "Charbagh Railway Station","Hussainganj", "Sachivalaya", "Hazratganj", "KD Singh Babu Stadium", "Lucknow University","IT College", "Badshah Nagar", "Lekhraj Market", "Bhootnath Market", "Indira Nagar", "Munshipulia"];
+
+      var startIndex = stationList.indexOf(start);
+      var endIndex = stationList.indexOf(destination);
+
+      if (startIndex > -1 && endIndex > -1) {
+        stations = Math.abs(endIndex - startIndex);
+      }
+
+      return stations;
+    }
+
+    function calculateFarePrice(stations) {
+      var fare = 0;
+
+      if (stations === 1) {
+        fare = 10;
+      } else if (stations === 2) {
+        fare = 15;
+      } else if (stations >= 3 && stations <= 6) {
+        fare = 20;
+      } else if (stations >= 7 && stations <= 9) {
+        fare = 30;
+      } else if (stations >= 10 && stations <= 13) {
+        fare = 40;
+      } else if (stations >= 14 && stations <= 17) {
+        fare = 50;
+      } else if (stations >= 18) {
+        fare = 60;
+      }
+
+      return fare;
+    }
+  </script>
+</body>
+</html>
